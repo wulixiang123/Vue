@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // Object.defineProperty()
+        // 功能: 用来给对象添加属性的
+        // 参数:
+        //      参数一: 要添加的对象
+        //      参数二: 要添加的属性
+        //      参数三: 配置对象
+        //          value  配置属性值
+        //          writable  属性是否可修改
+        //          configurable  属性是否可以删除
+        //          enumerable  是否可枚举
+        //          get() {}  获取值走get,get方法的返回值将作为属性的值
+        //          set(val) {}  设置值走set,设置的值会给到set的形参上val上
+        //          注意: get、set 和 value、writable 冲突,不能同时配置
+        // 返回值: 返回参数一(返回要添加对象的本身)
+        // 我们讲这个方法主要是说get和set
+        // ***为了拿到对象属性【设置值】和【获取值】这个过程
+
+        let obj = {
+            name:'悟空'
+        }
+
+        let o = Object.defineProperty(obj,'age',{
+            // value:22,// 配置属性值
+            // writable:true,// 属性是否可修改
+            configurable:true,// 属性是否可以删除
+            enumerable:false,// 是否可枚举
+            get(){
+                return 11
+            },
+            set(val){
+                console.log('设置值',val);
+            }
+        })
+
+        console.log(o,o === obj);
+        // delete obj.age
+        // obj.age = 33
+        console.log(obj);
+        console.log(obj.age);
+        obj.age = 22
+
+        for (const key in obj) {
+            console.log(key,obj[key]);
+        }
+
+        // --------------
+        // Object 还有没有其他方法了?
+        // Object.keys()
+        // Object.values()
+        // Object.assign() // 浅拷贝
+        // Object.create() // 以参数为原型创建一个实例对象
+
+        let obj1 = {name:'张三'}
+        let obj2 = {}
+        Object.assign(obj2,obj1)// 这个方法和 { ...obj1 } 一样
+        console.log(obj2);
+
+        let obj3 = Object.create(null)
+        console.log(obj3,obj3.__proto__);
+
+        let obj4 = Object.create({name:'李四'})
+        console.log(obj4,obj4.__proto__);
+    </script>
+</body>
+</html>
