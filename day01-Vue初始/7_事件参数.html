@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <button @click="clickHandler1">点我</button>
+            <button @click="clickHandler2(msg)">点我</button>
+            <button @click="clickHandler3($event,msg)">点我</button>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    msg:'你是个好人'
+                },
+                methods:{
+                    // 1. 回调默认不传参的时候,传过来的参数是事件对象event
+                    clickHandler1(e){
+                        console.log('事件1触发啦',e);
+                    },
+                    // 2. 回调中如果我们自己想要传递参数,加小括号传参即可
+                    // 传过来的参数就是小括号中的内容
+                    clickHandler2(e){
+                        console.log('事件2触发啦',e);
+                    },
+                    // 现在我们见过了默认带的event和自己传递的参数了
+                    // 现在两个参数我都想要
+                    // 在绑定事件写回调的时候加小括号,小括号中写参数和$event
+                    // 参数代表自己要传的参,$event代表事件对象
+                    // 注意: 这个时候只能用$event(规定)
+                    // 至于为什么,按下不表
+                    clickHandler3(e1,e2){
+                        console.log('事件3触发啦',e1,e2);
+                    }
+                }
+            })
+
+            // 在Vue中的回调/方法,不传参 默认返回事件对象event,
+            // 传参的时候 传了自定义参数之后就不能获得事件对象event了,
+            // 解决: $event,固定写法,
+        </script>
+    </body>
+</html>
