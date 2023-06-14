@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <!-- 
+                v-model.trim="绑定值" 去除两边空格
+                v-model.lazy="绑定值" 失去焦点时触发
+                v-model.number="绑定值" 去除非数字功能 但缺点是`顾腚不顾头`
+             -->
+            <p>trim: <input type="text" name="" v-model.trim="username"></p>
+            <p>lazy: <input type="text" name="" v-model.lazy="username"></p>
+            <p>number: <input type="text" name="" v-model.number="age"></p>
+        </div>
+        <script>
+            /**
+             *  修饰符：trim、lazy、number
+             * 
+             * 
+             */
+            new Vue({
+                el:'#demo',
+                data: {
+                    username:'atguigu',
+                    age:19
+                }
+            })
+        </script>
+    </body>
+</html>

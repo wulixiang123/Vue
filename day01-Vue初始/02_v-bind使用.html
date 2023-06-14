@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <p>username:{{username}}</p>
+
+            <!-- 1.{{}}插值语法不可以给属性赋值 -->
+            <p>url: <a href="{{url}}">{{web}}</a></p>
+
+            <!-- 2.使用v-bind:属性名 = "值"可以解决 -->
+            <p>指令url: <a v-bind:href="url">{{web}}</a></p>
+
+            <!-- 自定义属性的绑定 如果指定的值没有和data有关,那么忽略属性绑定 想强制加上需要再嵌套引号--> 
+            <p>自定义属性绑定: <div v-bind:class="c1"v-bind:username="username"v-bind:txt="abc">自定义属性测试</div></p>
+            <p>自定义属性绑定问题解决: <div v-bind:txt="'abc'"></div></p>
+
+            <!-- 3.最爽的写法来了 -->
+            <p>v-bind简写: <a :href="url" :username="username">百度~~~</a></p>
+
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    username:'Lyb',
+                    age:18,
+                    url:'http://baidu.com',
+                    web:'百度',
+                    c1:'bg1'
+                }
+            })
+        </script>
+    </body>
+</html>

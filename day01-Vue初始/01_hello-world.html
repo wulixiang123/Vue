@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <!-- 舞台,渲染的地方 -->
+        <div id="demo">
+            <div>
+                <h3>hello,Vue</h3>
+                <p>name:{{name}}</p>
+                <p>age:{{age}}</p>
+            </div>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',//el绑定舞台
+                data: {//data相当于React中的state,是状态数据
+                    name:'Lyb',
+                    age:18
+                }
+            })
+        </script>
+    </body>
+</html>

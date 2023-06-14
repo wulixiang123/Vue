@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <!-- 标准写法 -->
+            <h3>单向数据绑定:</h3>
+            <input type="text" v-bind:value="name">
+            <h3>双向数据绑定:</h3>
+            <input type="text" v-model:value="name">
+
+            <!-- 简写 -->
+            <h3>单向数据绑定:</h3>
+            <input type="text" :value="name">
+            <h3>双向数据绑定:</h3>
+            <input type="text" v-model="name">
+
+            <!-- 需要注意的是双向数据绑定不能给普通标签绑定,
+                 因为双向数据绑定简单来理解就是可以使人机交互的元素标签可以绑定
+             -->
+             <!-- 
+                简写形式:
+                1.单向:  :value = "值"
+                2.双向:  v-model = "值"
+              -->
+
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    name:'Lyb'
+                }
+            })
+        </script>
+    </body>
+</html>
