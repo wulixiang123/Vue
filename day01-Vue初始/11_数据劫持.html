@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 问题二：当我们修改数据的时候，页面怎么就更新了?
+        // 什么时候进行页面更新,当数据发生变化的时候去更新页面
+        // vue怎么知道数据发生变化了
+        // 我们需要拿到获取值和设置值的过程,就可以知道什么时候修改的数据
+
+        // 数据劫持
+        // 拿到数据设置值和获取值的过程,拿到这个过程可以对页面进行更新
+        // 之后一旦数据发生修改,我么立刻更新页面
+
+        // function Vue(options){//options是配置对象~~~~~~~~~~~~
+        function Vue(a){
+            // this 是当前实例,这是个构造函数
+            let data = a.data// 拿到的是传入配置对象中data属性的地址
+            console.log({data});//{text: '悟空', msg: '猪八戒'}
+
+            // 数据代理
+            Object.keys(data).forEach(key =>{
+                console.log({key});//{key: 'text'}{key: 'msg'}
+                Object.defineProperty(this,key,{//当前实例Vue , 给实例加key
+                    get(){
+                        console.log(this);//Vue当前实例
+                        console.log({key});//{key: 'text'}
+                        return data[key]//返回data中的key
+                    },
+                    set(val){
+                        console.log({val});//{val: '猪八戒'}
+                        data[key] = val
+                    }
+                })
+            })
+
+            // 数据劫持
+            Object.keys(data).forEach(key=>{
+                defaineReactive(data,key,data[key])
+                console.log({data});
+                console.log({key});//{key: 'text'}{key: 'msg'}
+            })
+        }
+        function defaineReactive(data,key,value){
+            Object.defineProperty(data,key,{
+                get(){
+                    console.log('获取值的过程');
+                    return value
+                },
+                set(val){
+                    console.log('设置值的过程');
+                    value = val
+                }
+            })
+        }
+
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                text:'悟空',
+                msg:'八戒'
+            }
+        })
+
+        vm.msg = '猪八戒';
+        console.log(vm.text);
+    </script>
+</body>
+</html>
