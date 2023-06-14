@@ -1,29 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <script src="../js/vue.js"></script>
-    </head>
-    <body>
-        <!-- 舞台,渲染的地方 -->
-        <div id="demo">
-            <div>
-                <h3>hello,Vue</h3>
-                <p>name:{{name}}</p>
-                <p>age:{{age}}</p>
-            </div>
-        </div>
-        <script>
-            new Vue({
-                el:'#demo',//el绑定舞台
-                data: {//data相当于React中的state,是状态数据
-                    name:'Lyb',
-                    age:18
-                }
-            })
-        </script>
-    </body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <!-- 舞台,渲染的地方 -->
+    <div id="demo">
+      <div>
+        <h3>hello,Vue</h3>
+        <p>name:{{name}}</p>
+        <p>age:{{age}}</p>
+      </div>
+    </div>
+    <script>
+      new Vue({
+        el: "#demo", //el绑定舞台
+        data: {
+          //data相当于React中的state,是状态数据
+          name: "Lyb",
+          age: 18,
+        },
+      });
+    </script>
+
+    <!-- <script>
+      // 修改页面的内容
+      // 1. 原生
+      // document.getElementById('app').innerHTML = '哈哈'
+
+      // 2. jQuery
+      // $('#app').html('哈哈')
+      // jQuery 曾今一统江湖
+      // 为什么一统江湖?
+      //      1. 语法简介
+      //      2. 解决的绝大多数兼容性问题
+      // 为什是曾经?
+      //      举个例子: 现在要修改ul下所有li的内容
+      //      <ul class="list">
+      //          <li class="item">内容1</li>
+      //          <li class="item">内容2</li>
+      //          <li class="item">内容3</li>
+      //          <li class="item">内容4</li>
+      //          <li class="item">内容5</li>
+      //      </ul>
+      //      $('.item').each(liNode => {
+      //          liNode.html('哈哈')
+      //      })
+      //      这里循环了5次,相当于设置了5次,相当于进行了5次DOM操作
+      //      经历了5次重排、重绘
+      //      重排: 位置发生改变
+      //      重绘: 颜色、样式发生变化
+      //      操作DOM的次数太多,性能太低
+      //  所以后来不行了
+
+      // 出现了 React、 Vue 这些框架完美解决了大量操作DOM的性能问题
+      // 所以被广泛推广起来
+      // React、 Vue就没缺点吗?
+      // 对于SEO优化(搜索引擎优化)不好
+      // vue如何解决操作DOM的性能问题?
+      // 虚拟DOM(diff算法) + Fragment容器
+
+      // <div id="app">
+      //     <div class="wrapper">哈哈</div>
+      // </div>
+      // 虚拟DOM(diff算法)
+      // a = {
+      //     tag: 'div',
+      //     attrs: {
+      //         id: 'app'
+      //     },
+      //     children: [
+      //         {
+      //             tag: 'div',
+      //             attrs: {
+      //                 class: 'wrapper'
+      //             },
+      //             content: '哈哈'   // --> '呵呵'
+      //         }
+      //     ]
+      // }
+      // 当数据发生变化的时候,此时diff算法会对比出虚拟DOM的差异,从而进行页面的更新
+      // 页面的更新是需要操作DOM的,此时如果更新的div过多,一个一个更新也会有新能问题
+      // 将整个页面的DOM交给 Fragment容器(这个容器在页面中不显示,存在于内存中)
+      // 在 Fragment容器 中进行DOM的更新(也就是说更新DOM的操作在内存,而不在页面上)
+      // 这样会大大减少DOM的操作,从而提升性能
+
+      console.log("如何使用vue");
+
+      // 2. 创建实例(传一个配置项)
+      let vm = new Vue({
+        // 3. 书写配置项
+        // el代表关联的Html元素
+        el: "#app",
+        // data代表数据的意思
+        data: {
+          msg: "我爱你",
+        },
+      });
+    </script> -->
+  </body>
 </html>
