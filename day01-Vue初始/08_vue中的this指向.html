@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./js/vue.js"></script>
+</head>
+<body>
+    <button id="btn">按钮</button>
+
+    <div id="app">
+        <div>{{ msg }}</div>
+        <div>{{ this.msg }}</div>
+        <button @click="clickHandler">按钮</button>
+        <button @click="this.clickHandler">按钮</button>
+        <hr>
+        <button @click="msg = '我们不合适'">修改msg</button>
+        <!-- 这里的this.msg = '我们不合适'  不好使,这里的this有问题,具体由什么问题,后面说 -->
+        <button @click="this.msg = '我们不合适'">修改msg</button>
+    </div>
+    <script>
+        
+        // 1. 普通函数 - this是window
+        // function fn () {
+        //     console.log(this) // window
+        // }
+        // fn()
+
+        // 2. 方法调用 - 谁调用this就是谁
+        // let obj = {
+        //     name: '赵四',
+        //     eat() {
+        //         console.log(this) // this ---> obj
+        //     }
+        // }
+        // obj.eat()
+
+        // 3. 构造函数 - 构造函数中this指向当前创建的实例
+        // function Person() {
+        //     this.name = '张四'
+        //     this.age = 33
+        //     console.log(this)  //  this  -> 当前创建的实例
+        // }
+        // new Person()
+
+        // 4. 箭头函数
+        // 箭头函数中没有this,this指向上一层作用域的this
+
+        // 5. call、apply、bind
+        // let obj1 = {
+        //     name: '张三',
+        //     age: 18,
+        //     eat(arg1, arg2) {
+        //         console.log('能吃', this, arg1, arg2)
+        //     }
+        // }
+
+        // let obj2 = {
+        //     name: '旺财',
+        //     age: 3
+        // }
+
+        // obj1.eat() // this -> obj1
+        // obj1.eat.call(obj2, '真能吃', '吃太多了') // call将this指向由原来的obj1变成现在的obj2
+        // obj1.eat.apply(obj2, ['真能吃', '吃太多了']) // apply将this指向由原来的obj1变成现在的obj2
+        // // call和apply区别: 传参方式不同
+
+        // // bind也会改变this指向,但是他是创建一个新的函数,新函数中的this指向发生改变
+        // let fn2 = obj1.eat.bind(obj2)
+        // fn2()
+
+        // let obj3 = {
+        //     name: '狗蛋'
+        // }
+        // let fn3 = fn2.bind(obj3)
+        // fn3() // this---> obj2
+        // 注意: bind改变this指向只能改一次,后续再改不行了
+
+
+        // 6. 事件回调
+        // 事件回调中的this指向事件源
+        // const btn = document.getElementById('btn');
+        // btn.onclick = function () {
+        //     console.log(this)
+        // }
+
+        // 7. vue中的this
+        // 在vue中所有的this指向当前实例
+        // 模板中的this也是如此,指向当前实例
+        // 注意: 作为新手而言,不要在模板中使用this(包括熟练工也不推荐)
+
+        let vm = new Vue({
+            el: '#app',
+            data: {
+                msg: '我爱你'
+            },
+            methods: {
+                clickHandler() {
+                    console.log(this)
+                    console.log(this === vm)
+                    this.msg = "你是个好人"
+                }
+            }
+        })
+
+    </script>
+</body>
+</html>
