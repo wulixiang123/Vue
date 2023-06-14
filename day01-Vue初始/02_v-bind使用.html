@@ -24,6 +24,9 @@
             <!-- 3.最爽的写法来了 -->
             <p>v-bind简写: <a :href="url" :username="username">百度~~~</a></p>
 
+
+            <p v-html="username"></p>
+            <p v-text="username"></p>
         </div>
         <script>
             new Vue({

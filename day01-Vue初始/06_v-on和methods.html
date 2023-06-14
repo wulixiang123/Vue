@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!--
+        问题：如何给模板(挂载点)中的元素绑定点击事件？
+        v-on绑定事件的指令
+        冒号之后的click是事件类型
+        双引号是js的分割符,里面写表达式
+        注意: 这里写的表单时要么是赋值语句,要没是函数名作为事件的回调
+        v-on:click=""
+
+        事件回调写在methods当中
+        我们可以使用data中的方法,也可以使用methods当中的方法
+        但是推荐使用(以后都是)methods中的方法
+        为什么?
+        原因1: 因为data中的数据是可变的,methods中的方法是不可变的
+        原因2: 因为data中的this指向window,而methods中的this指向当前vm实例
+
+        data中所有的数据都会被放在vm实例身上
+
+        全写
+        v-on:click="clickHandler"
+        简写
+        @click="clickHandler"
+    -->
+
+    <div id="app">
+        <div>mag:{{msg}}</div>
+        <!-- 
+            总结:
+            v-on:click  点击事件
+            @click      点击事件的简写
+            data        相当于React中的state,数据可被改变
+            methods     数据不可变,方法/回调函数写在methods里面
+         -->
+        <button v-on:click="msg='孙悟空'">悟空-孙悟空</button><br>
+        <hr>
+        <input type="text" v-model="btnHandler"><br>
+        <button v-on:click="btnHandler">data中的回调</button><br>
+        <hr>
+        <input type="text" v-model="clickHandler"><br>
+        <button v-on:click="clickHandler">methods中的回调</button><br>
+        <hr>
+        <button @click="clickHandler">简写事件@click</button>
+    </div>
+
+    <script>
+        // new Vue 就是实例
+        let vm = new Vue({
+            el:'#app',//绑定
+            data:{//相当于React中的state  数据是可被改变的
+                msg:'悟空',
+                hobby:['八戒','唐僧','悟净'],
+                btnHandler(){//data中定义的方法
+                    console.log('this:',this);
+                    vm.msg = '悟空~~~~~'
+                }
+            },
+            methods:{
+                clickHandler(){
+                    console.log('this:',this);
+                    console.log(this === vm);
+                    this.msg = '美猴王'
+                }
+            }
+        })
+        console.log(vm);
+    </script>
+</body>
+</html>
