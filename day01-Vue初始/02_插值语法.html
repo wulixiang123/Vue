@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <div>{{msg}}</div>
+            <div>{{name}}</div>
+            <div>{{msg + name}}</div>
+            <div>{{msg + 111}}</div>
+            <div>{{count + num}}</div>
+            <div>{{count - num}}</div>
+            <div>{{count > num}}</div>
+            <div>{{hobby[0]}} - {{hobby[1]}} - {{hobby[2]}}</div>
+            <div>{{hobby}}</div>
+            <div>姓名:{{userinfo.username}}</div>
+            <div>年龄:{{userinfo.age}}</div>
+
+            
+            <div>{{null}}</div>
+            <div>{{undefined}}</div>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data() {
+                    return {
+                        msg:'灰太狼',
+                        name:'红太狼',
+                        count:11,
+                        num:1,
+                        hobby:['喜羊羊','美羊羊','懒羊羊'],
+                        userinfo:{
+                            username:'刘能',
+                            age:45
+                        }
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
