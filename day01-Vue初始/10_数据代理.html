@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数据代理:
+        // 将data中的数据代理到vm实例上叫数据代理
+        // 目的: 让我们访问数据的时候,可以直接使用 实例.数据  访问到data中的数据
+
+
+        function Vue(a){
+            // this 是当前实例,这是个构造函数
+            let data = a.data// 拿到的是传入配置对象中data属性的地址
+            console.log({data});//{text: '悟空', msg: '八戒', content: '悟净'}
+            Object.keys(data).forEach(key =>{
+                console.log({key});//{key: 'text'}{key: 'msg'}{key: 'content'}
+                Object.defineProperty(this,key,{//当前实例Vue , 给实例加key
+                    get(){
+                        return data[key]//返回data中的每一个key
+                    },
+                    set(val){
+                        data[key] = val
+                    }
+                })
+            })
+        }
+
+        let vm = new Vue({
+            el:'#app',
+            data:{
+                text:'悟空',
+                msg:'八戒',
+                content:'悟净'
+            }
+        })
+        console.log(vm);
+        console.log(vm.text);//悟空
+        console.log(vm.msg);//八戒
+        console.log(vm.content);//悟净
+        // console.log(vm.text = '唐僧');//唐僧
+        let b = vm.text = '唐僧'
+        console.log(vm.text);//唐僧
+    </script>
+</body>
+</html>
