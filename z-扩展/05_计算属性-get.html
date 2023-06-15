@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <p>姓：<input type="text" name="" v-model="firstName"></p>
+            <p>名：<input type="text" name="" v-model="lastName"></p>
+            <!-- 姓的首字母大写 用姓-名 -->
+            <p>全名：{{fullName}}</p>
+            <p>全名：{{fullName}}</p>
+            <p>全名：{{fullName}}</p>
+            <p>全名：{{fullName}}</p>
+            <p>全名：{{fullName}}</p>
+            <p>全名：{{fullName}}</p>
+            <p>全名：{{fullName}}</p>
+            
+        </div>
+        <script>
+            /**
+             *  计算属性：通过其他属性的值计算得来的，可以优先考虑使用计算属性
+             *            计算属性的值如果没有发生变化【他依赖的那些属性没有变化】，可以使用上次缓存的值
+             * 
+             *  写在 computed配置项中
+             *  计算属性也有数据代理，只不过计算属性的数据代理，中的get方法和set方法，可以自定义
+             * 
+             */
+            Vue.config.productionTip = false
+            new Vue({
+                el:'#demo',
+                data: {
+                    firstName:'zhang',
+                    lastName:'san'
+                },
+                computed:{
+                    fullName:{
+                        // 当读取计算属性的值的时候，会调用get方法，get方法的返回值就是计算属性的值
+                        get(){
+                            console.log('计算属性重新计算了', this)
+                            return this.firstName[0].toUpperCase() + this.firstName.slice(1) + '-' + this.lastName
+                        },
+                        set(){
+
+                        }
+                    }
+                }
+            })
+
+            // 伪代码
+            // Object.keys($options.computed).forEach(attr=>{
+            //     let getter = $options.computed[attr].get ? $options.computed[attr].get : function(){}
+            //     Object.defineProperty(vm, attr, {
+            //         get:getter
+            //     })
+            // })
+        </script>
+    </body>
+</html>
