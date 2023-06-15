@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <!-- <p>全名:{{firstName[0].toUpperCase() + firstName.slice(1) + '-' + lastName}}</p> -->
+
+            {{fullName()}}
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    firstName:'zhang',
+                    lastName:'san'
+                },
+                methods:{
+                    fullName(){
+                        console.log('fullName run');
+                        return this.firstName[0].toUpperCase() + this.firstName.slice(1) + '-' + this.lastName
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <style>
+            .box1{
+                width: 100px;
+                height: 100px;
+                background-color: aqua;
+            }
+        </style>
+        <div id="demo">
+            <form action="http://baidu.com">
+                <button @click="click1">在方法中阻止默认行为</button>
+                <button @click.prevent="click2">在事件上直接阻止</button>
+
+                <button @click.once="click3">只使用一次的方法</button>
+            </form>
+            <!-- 点击div元素会冒泡到按钮中 -->
+            <div class="box1" @click.self="click1">
+                <!-- 点击按钮元素不会冒泡影响到div元素 -->
+                <button @click.self="click2">事件源是自身触发</button>
+            </div>
+            
+        </div>
+
+        <!-- 
+            阻止默认行为:
+            1.按钮中直接写  @click.prevent="方法名"
+            2.方法中写      e.preventDefault()
+
+            阻止冒泡:
+            1.在方法中写e.stopPropagation()
+            2.按钮中直接写 @click.stop
+
+            既想阻止默认行为又想阻止冒泡 在按钮中直接写 @click.prevent.stop
+
+            只可以使用一次的方法:
+            @click.once
+
+            冒泡相关:
+            @click.self
+            事件源是自身触发,不会冒泡到别的元素
+         -->
+
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+
+                },
+                methods:{
+                    click1(e){
+                        e.preventDefault()
+                        console.log(e);
+                        // console.log('我使用了@click.self所以button按钮不受干扰');
+                    },
+                    click2(e){
+                        console.log(e);
+                    },
+                    click3(e){
+                        e.preventDefault()//阻止不了默认行为
+                        console.log(e);
+                    },
+                    click4(e){
+                        console.log(e);
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <input type="text" @keyup="click1">
+            <input type="text" @keydown="click2">
+
+            <input type="text" @keyup.delete="click3">
+            <input type="text" @keydown.enter="click4">
+
+            <input type="text" @keydown.q.w.e.r.t="click5">
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {},
+                methods:{
+                    click1(e){
+                        console.log(e.target.value);
+                        console.log('键盘抬起事件触发啦');
+                    },
+                    click2(e){
+                        console.log(e.target.value);
+                        console.log('键盘按下事件触发啦');
+                    },
+                    click3(e){
+                        console.log(e.target.value);
+                        console.log('键盘删除事件触发啦');
+                    },
+                    click4(e){
+                        console.log(e.target.value);
+                        console.log('键盘回车事件触发啦');
+                    },
+                    click5(e){
+                        console.log(e.target.value);
+                        console.log('键盘q.w.e.r.t事件');
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>

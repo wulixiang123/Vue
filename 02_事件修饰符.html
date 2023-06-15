@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <button @click.ctrl="onclick1">按下ctrl并点击触发</button>
+            <button @click.shift="onclick2">按下shift并点击触发</button>
+            <button @click.ctrl.shift="onclick3">按下ctrl+shift并点击触发</button>
+            <button @click.ctrl.shift.alt="onclick4">按下ctrl+shift+alt并点击触发</button>
+
+            <!-- 只能限制ctrl+shift+alt之间,其他键位不限制 -->
+            <button @click.alt.exact="onclick5">按下shift并点击触发</button>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {},
+                methods:{
+                    onclick1(){
+                        console.log('我是ctrl');
+                    },
+                    onclick2(){
+                        console.log('我是shift');
+                    },
+                    onclick3(){
+                        console.log('我是ctrl+shift');
+                    },
+                    onclick4(){
+                        console.log('我是ctrl+shift+alt');
+                    },
+                    onclick5(){
+                        console.log('我是限定为alt触发的功能键');
+                    },
+                }
+            })
+        </script>
+    </body>
+</html>
