@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <p>姓: <input type="text" v-model="firstName"></p>
+            <p>名: <input type="text" v-model="lastName"></p>
+
+            <p>姓名:{{fullName}}</p>
+            <p><button @click="setName">设置为李四</button></p>
+        </div>
+        <script>
+            // 调用方法会导致重复调用问题,
+            // 计算属性可以缓存第一次调用的值,解决重复打印问题
+            console.dir(Vue);
+            new Vue({
+                el:'#demo',
+                data: {
+                    firstName:'zhang',
+                    lastName:'san'
+                },
+                methods:{//方法写在里面
+                    setName(){
+                        this.fullName = '李四'
+                    }
+                },
+                computed:{//计算属性
+                    fullName:{
+                        get(){
+                            console.log('我是get',this);
+                            return this.firstName[0].toUpperCase() + this.firstName.slice(1) + '-' + this.lastName
+                        },
+                        set(name){
+                            console.log('我是set',this);
+                            console.log(name);//李四
+                            let names = name.slice('')
+                            console.log(names);
+                            this.firstName=names[0]
+                            this.lastName=names[1]
+                        }
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

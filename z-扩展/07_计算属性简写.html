@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <p>姓：<input type="text" name="" v-model="firstName"></p>
+            <p>名：<input type="text" name="" v-model="lastName"></p>
+            <p>全名：{{fullName}}</p>
+            <p>全名：{{fullName}}</p>
+            <p>全名：{{fullName}}</p>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    firstName:'杜维',
+                    lastName:'鲁道夫'
+                },
+                computed:{
+                    // 计算属性，一般如果只用get函数，那么就可以进行简写
+                    fullName(){
+                        console.log('计算属性重新计算了')
+                        return this.firstName + '-' + this.lastName
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

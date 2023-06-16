@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <script src="./js/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <div>msg: {{ msg }}</div>
+            <input type="text" v-model="msg">
+            <br><br>
+            <!--
+                注意:
+                @blur 失焦触发
+                @change  失焦且内容发生变化触发
+                @input 只要内容发生变化就会触发
+            -->
+            <input type="text" :value="msg" @input="inputHandler">
+        </div>
+        <script>
+            // 如果不用v-model能不能实现双线数据绑定
+            // 双向数据绑定两个功能:
+            //  1. 数据发生变化页面发生变化(input框内容变化)
+            //  2. input框内容变化,数据也变化
+            // 可以使用 :value 和 @input 实现和 v-model指令一样的效果
+            new Vue({
+                el: "#app",
+                data: {
+                    msg: '我爱你'
+                },
+                methods: {
+                    inputHandler(e) {
+                        console.log(e.target.value, e)
+                        this.msg = e.target.value;
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
