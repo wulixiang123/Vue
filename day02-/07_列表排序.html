@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <input type="text" v-model="keywords">
+            <button @click="sortType = 1">升序</button>
+            <button @click="sortType = 2">降序</button>
+            <button @click="sortType = 3">原序</button>
+
+            <div v-for="item in newList" :key="item.id">
+                {{item.id}} -- {{item.content}} -- {{item.age}}
+            </div>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    keywords:'',
+                    sortType:3,
+                    list: [
+                        { id: 1010, content: 'gaoyuanyuan', age: 28 },
+                        { id: 1020, content: 'yangmi', age: 22 },
+                        { id: 1030, content: 'guodegang', age: 26 },
+                        { id: 1040, content: 'yuqian', age: 18 },
+                    ],
+                },
+                computed:{
+                    newList(){
+                        let arr = this.list.filter(item=>{
+                            return item.content.includes(this.keywords)
+                        })
+                        if(this.sortType === 1){
+                            arr.sort((a,b)=>{
+                                return a.age - b.age
+                            })
+                        }else if(this.sortType === 2){
+                            arr.sort((a,b)=>{
+                                return b.age - a.age
+                            })
+                        }else{}
+                        return arr
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
