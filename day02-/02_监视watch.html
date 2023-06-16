@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="app">
+            <input type="text" v-model="firstName">
+            <div>firstName:{{firstName}}</div>
+            <input type="text" v-model="lastName">
+            <div>lastName:{{lastName}}</div>
+
+            <div>异步: {{ fullName }}</div>
+            <hr>
+            <input type="text" v-model="userInfo.username">
+            <div>username:{{userInfo.username}}</div>
+
+            <input type="text" v-model="userInfo.age">
+            <div>age:{{userInfo.age}}</div>
+
+            <button @click="clickHandler">修改username</button>
+            
+        </div>
+        <script>
+            new Vue({
+                el: "#app",
+                data: {
+                    firstName:'尼古拉斯',
+                    lastName:'赵四',
+        
+                    fullName:'',// 定义好的数据,用来接收全名
+
+                    userInfo:{
+                        username:'宋小宝',
+                        age:33
+                    }
+                },
+                // watch
+                // 监听已存在的数据
+                // 当已存在的数据发生变化的时候,我们可以进行逻辑处理
+                watch:{
+                    firstName(newValue,oldValue){
+                        console.log({newValue});
+                        console.log({oldValue});
+                        this.fullName = newValue + '-' + this.lastName
+                    },
+                    // 写法一: 函数写法,当监听的数据发生变化执行这个函数
+                    // lastName(newVale, oval) {
+                    //     this.fullName = this.firstName + '-' + newVale
+                    // },
+                    lastName:{// 写法二: 对象写法
+                        handler(newValue,oldValue){
+                            setTimeout(() => {
+                                this.fullName = this.firstName + '-' + newValue
+                            }, 2000)
+                            // this.fullName = this.firstName + '-' + newValue
+                        },
+                        immediate:true,// 监听到之后立即执行
+                    },
+                    userInfo:{// 监听对象
+                        handler(newValue,oldValue){
+                            console.log(newValue);
+                            console.log(newValue.username);
+                        },
+                        immediate:true,// 立即执行监听的handler
+                        deep:true// 深度监听
+                    },
+                    "userInfo.username":{
+                        handler(newValue){
+                            console.log('直接监听某个对象下的属性',newValue);
+                        }
+                    }
+                },
+                methods:{
+                    clickHandler(){
+                        this.userInfo = {
+                            username:'小沈阳',
+                            age:33
+                        }
+                    }
+                }
+            })
+
+
+            // 问: methods 和 computed 的区别?
+            // methods 是方法,需要调用,调用一次,执行一次
+            // computed 是属性,使用一次属性就会把结果缓存起来,在次使用的时候使用的缓存的结果
+            //          计算属性的值依赖get方法的return
+            //          当计算属性依赖的数据发生变化才会重新计算
+
+            // 问: computed 和 watch 的区别?
+            // computed 是计算属性,之前没有,通过计算得出的属性
+            //          计算属性中不能出现异步
+            // watch 监听,对已存在的数据进行监听
+            //          watch监听中可以出现异步
+        </script>
+    </body>
+</html>
