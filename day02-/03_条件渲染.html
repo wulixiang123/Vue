@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <!-- 条件渲染 -->
+            <div v-if="status === 'success'">表白成功</div>
+            <div v-else-if="status === 'fail'">表白失败</div>
+            <div v-else="status === 'pending'">吊着他</div>
+
+            <hr>
+
+            <div v-show="isShow">结婚成功</div>
+            <div v-show="!isShow">结婚失败</div>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    status:'success',// success fail pending
+                    isShow:true
+                }
+            })
+        </script>
+    </body>
+</html>
