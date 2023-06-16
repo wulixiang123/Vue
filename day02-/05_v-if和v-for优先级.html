@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <div v-for="item in list" :key="item.id" v-if="item.isShow">
+                {{item.id}} -- {{item.content}}
+            </div>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    list:[
+                        {
+                            id:1,
+                            content:'杨幂',
+                            isShow:true
+                        },
+                        {
+                            id:2,
+                            content:'刘亦菲',
+                            isShow:true
+                        },
+                        {
+                            id:3,
+                            content:'高圆圆',
+                            isShow:false
+                        },
+                    ],
+                }
+            })
+        </script>
+    </body>
+</html>
