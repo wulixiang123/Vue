@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+
+            <input type="text" v-model="keywords">
+
+            <div v-for="item in newList" :key="item.id">
+                {{item.id}} -- {{item.content}}
+            </div>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    keywords:'',
+                    list: [
+                        { id: 1010, content: 'gaoyuanyuan' },
+                        { id: 1020, content: 'yangmi' },
+                        { id: 1030, content: 'guodegang' },
+                        { id: 1040, content: 'yuqian' },
+                    ],
+                },
+                computed:{
+                    newList(){
+                        return this.list.filter(item=>{
+                            return item.content.includes(this.keywords)
+                        })
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
