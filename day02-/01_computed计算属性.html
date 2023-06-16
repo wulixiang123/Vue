@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <!-- 模板语法 -->
+            {{firstName + lastName}}
+            <div v-html="firstName + lastName"></div>
+            <div v-text="firstName + lastName"></div>
+
+            <!-- methods语法 -->
+            <div>{{getFullName()}}</div>
+            <div>{{getFullName()}}</div>
+            <div>{{getFullName()}}</div>
+
+            <!--
+                 computed计算属性
+                 缓存上一个结果,不会重复调用
+                 改变上一个结果,会再次执行并缓存
+                 因为是计算属性,不需要()调用
+             -->
+             <div>{{fullName}}</div>
+             <div>{{fullName}}</div>
+             <div>{{fullName}}</div>
+
+
+             <input type="text"v-model="firstName">
+             <input type="text"v-model="lastName">
+             <input type="text" v-model="fullName">
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    firstName:'尼古拉斯',
+                    lastName:'赵四'
+                },
+                methods:{
+                    getFullName(){
+                        console.log('我是methods方法');
+                        return this.firstName + this.lastName
+                    }
+                },
+                computed:{
+                    // 写法一:函数写法
+                    // fullName(){
+                    //     console.log('我是computed计算属性');
+                    //     return this.firstName + this.lastName
+                    // }
+                    // 写法二:对象写法
+                    fullName:{
+                        get(){
+                            console.log('我是get');
+                            return this.firstName + this.lastName
+                        },
+                        set(val){
+                            console.log('我是set');
+                            console.log(val);
+                        }
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
