@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <div v-for="(item,index) in list" :key='item.id'>
+                {{ item.id }}  -  {{ item.content }}
+            </div>
+
+            <hr>
+            <!-- 不常见用法 -->
+            <div v-for="(item, index) in userInfo" :key="index">
+                {{ index }} -- {{ item }}
+            </div>
+            <hr>
+
+            <div v-for="(item, index) in 7" :key="item">
+                {{ index }} -- {{ item }}
+            </div>
+        </div>
+
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    list:[
+                        {
+                            id:1,
+                            content:'杨幂'
+                        },
+                        {
+                            id:2,
+                            content:'刘亦菲'
+                        },
+                        {
+                            id:3,
+                            content:'高圆圆'
+                        },
+                    ],
+                    userInfo: {
+                        username: '贾玲',
+                        age: 18
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
