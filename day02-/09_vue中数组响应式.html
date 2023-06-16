@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <button @click="clickHandler1">修改下标为0的content</button>
+            <button @click="clickHandler2">修改下标为0的数组</button>
+            <button @click="clickHandler3">修改下标为0的content</button>
+
+            <div v-for="item in list" :key="item.id">
+                {{item.id}} -- {{item.content}}
+            </div>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    list: [
+                        { id: 1010, content: 'gaoyuanyuan', age: 28 },
+                        { id: 1020, content: 'yangmi', age: 22 },
+                        { id: 1030, content: 'guodegang', age: 26 },
+                        { id: 1040, content: 'yuqian', age: 18 },
+                    ],
+                },
+                methods:{
+                    clickHandler1(){
+                        this.list[0].content = 'jialing'
+                    },
+                    clickHandler2(){
+                        this.list[0].content = { id: 1010, content: 'shenteng', age: 28 }
+                    },
+                    clickHandler3(){
+                        this.list.splice(0,1,{id:1010,content: 'huangbo', age: 28 })
+                    },
+                }
+            })
+
+
+            // Vue 将被侦听的数组的变更方法进行了包裹，所以它们也将会触发视图更新。这些被包裹过的方法包括：
+            // push()
+            // pop()
+            // shift()
+            // unshift()
+            // splice()
+            // sort()
+            // reverse()
+
+            // clickHandler2不好使,为啥呢?
+            // array底层用的不是Object.defineProperty()
+
+            // let arr = [3, 8, 5]
+            // arr.forEach((item, index) => {
+            //     // console.log(arr, item, index)
+            //     Object.defineProperty(arr, index, {
+            //         get() {
+            //             return item
+            //         },
+            //         set(val) {
+            //             item = val
+            //         }
+            //     })
+            // })
+
+            // console.log(arr)
+
+            // arr.unshift(20)
+
+            // console.log(arr)
+        </script>
+    </body>
+</html>
