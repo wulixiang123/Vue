@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+        <div id="app">
+            <input type="text" v-model="msg">
+            <div v-once>{{ msg }}</div>
+            <hr>
+            <div v-pre>{{ msg }}</div>
+            <hr>
+            <div v-cloak>{{ msg }}</div>
+            <hr>
+            <div ref="qwerRef">msg: {{ msg }}</div>
+            <button @click="clickHandler">获取页面DOM</button>
+        </div>
+        <script>
+            // v-text  设置内容(不能解析HTML)
+            // v-html  设置内容(可以解析HTML)
+            // v-show   显示/隐藏(css->display: none)
+            // v-if     显示/隐藏(不渲染真实DOM)
+            // v-else
+            // v-else-if
+            // v-for    循环列表
+            // v-on     绑定事件 简写 @
+            // v-bind   绑定属性 简写 :
+            // v-model  双向数据绑定,目前用于表单
+            // v-slot   后面说(单独说)
+            // v-once   解析模板只解析一次,后续数据改变不会在解析
+            // v-pre    原封不动的将div中的内容输出,不解析插值
+            // v-cloak  (无法演示)
+
+            // 如何获取页面中的DOM元素
+            // 1. 给想要获取的标签绑定ref属性,属性值自己定
+            // 2. 通过 this.$refs.xxx 获取DOM,xxx就是绑定在元素上ref属性的属性值
+            //    这里是  this.$refs.qwerRef
+
+            new Vue({
+                el: "#app",
+                data: {
+                    msg: '我爱你'
+                },
+                methods: {
+                    clickHandler() {
+                        console.log(this.$refs.qwerRef)
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>
