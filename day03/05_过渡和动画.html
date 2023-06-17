@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title></title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <style>
+            .box {
+                position: absolute;
+                left: 200px;
+                width: 100px;
+                height: 100px;
+                background-color: hotpink;
+            }
+            .wrapper {
+                width: 80px;
+                height: 80px;
+                background-color: skyblue;
+            }
+
+            .v-enter {
+                opacity: 0;
+                height: 0;
+            }
+            .v-enter-to, .v-leave {
+                opacity: 1;
+                height: 100px;
+            }
+            .v-enter-active {
+                transition: all 2s;
+                animation: move 2s;
+            }
+
+            @keyframes move {
+                from {
+                    left: 0
+                }
+                to {
+                    left: 200px;
+                }
+            }
+
+            .v-leave {
+                opacity: 1;
+                height: 100px;
+            }
+            .v-leave-to {
+                opacity: 0;
+                height: 0;
+            }
+            .v-leave-active {
+                transition: all 2s;
+                animation: move 2s reverse;
+            }
+            /*
+            问: 什么样的属性可以过渡?
+            有连续变化的值就可以过渡 例如透明度、高度
+            不连续变化的值 例如 diaplay
+
+            css中可以继承给子元素的属性
+            凡是以
+                color
+                line
+                font
+                text
+            开头的属性都可以集成
+            */
+        
+            .qwer-enter{
+                opacity: 0;
+                width: 0;
+            }
+            .qwer-enter-to{
+                opacity: 1;
+                width: 80px;
+            }
+            .qwer-enter-active{
+                transition: all 5s;
+            }
+        </style>
+        <div id="app">
+            <button @click="isShow = !isShow">切换显示隐藏</button>
+            <transition>
+                <div class="box" v-show="isShow"></div>
+            </transition>
+
+            <h4>一堆html</h4>
+
+            <transition name="qwer">
+                <div class="wrapper" v-show="isShow"></div>
+            </transition>
+
+        </div>
+        <script>
+            // 过渡和动画
+            // 过渡
+            // 1. 将需要过渡的元素放在 transition 标签中
+            // 2. 书写过渡的类名
+            //      v-enter、v-enter-to、v-enter-active
+            // 3. 用一个变量控制元素的显示和隐藏
+            // 问题: 如果页面中有多个不同过渡的元素时怎么办?
+            // 1. 给transition标签起一个名字"qwer"
+            // 2. 书写类名的时候,使用如下形式
+            //      qwer-enter、qwer-enter-to、qwer-enter-active
+            
+            // 动画
+            new Vue({
+                el: "#app",
+                data: {
+                    isShow: false
+                }
+            })
+        </script>
+    </body>
+</html>
