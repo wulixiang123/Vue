@@ -8,6 +8,13 @@
         <script src="../js/vue.js"></script>
     </head>
     <body>
+        <!-- 
+            v-show指令的作用是：根据真假值切换元素的显示状态
+            原理是修改元素的的CSS属性(display)来决定实现显示还是隐藏
+            指令后面的内容最终都会解析为布尔值
+            值为真(true)的时候元素显示，值为假(false)的时候元素隐藏
+            数据改变之后呢对应的元素的显示状态也是会同步更新的
+         -->
         <div id="demo">
             <!-- 条件渲染 -->
             <div v-if="status === 'success'">表白成功</div>
