@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <div ref="qwerRef">啊哈</div>
+            <hr>
+            <div v-if="isShow" ref="abcRef">~~~~</div>
+        </div>
+        <script>
+            let vm = new Vue({
+                el:'#demo',
+                data: {
+                    msg:'哦吼',
+                    isShow:false
+                },
+                // 创建前:访问不到数据
+                beforeCreate(){
+                    console.log('创建前',this.msg);
+                },
+                // 创建后:可以访问到数据
+                // 创建指的是数据的注入和事件的绑定
+                created(){
+                    console.log('创建后',this.msg);
+                },
+                // 挂载前:获取不到DOM
+                beforeMount(){
+                    console.log('挂载前',this.$refs.qwerRef);
+                },
+                // 挂载后:可以获取到DOM
+                // 挂载指的是DOM的挂载
+                // 注意: 一般情况下发请求放在mounted中
+                mounted(){
+                    console.log('挂载后',this.$refs.qwerRef);
+                    setTimeout(()=>{
+                        this.isShow = true
+                    },2000)
+                },
+                // 更新前
+                beforeUpdate(){
+                    console.log('更新前',this.isShow,this.$refs.abcRef);
+                },
+                // 更新后
+                // 更新指的是DOM的更新
+                updated(){
+                    console.log('更新后',this.isShow,this.$refs.abcRef);
+                },
+                // 销毁前
+                beforeDestroy(){
+                    console.log('销毁前',this.$refs.abcRef);
+                },
+                // 销毁后
+                // 销毁会把事件解绑,把DOM和实例解绑,一般会在销毁前对 自己定义的一些DOM2事件解绑
+                // 如何触发销毁
+                // 1. 实例调用方法  vm.$destroy()
+                // 2. 组件销毁使用 v-if 隐藏
+                destroyed(){
+                    console.log('销毁后',this.$refs.abcRef);
+                }
+            })
+            setTimeout(()=>{
+                vm.$destroy()
+            },4000)
+
+            // document.getElementById().onclick = function() {}  DOM0事件
+            // window.addEventListener('事件类型', 回调函数) DOM2事件
+        </script>
+    </body>
+</html>
