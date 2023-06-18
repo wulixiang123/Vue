@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+
+        </div>
+        <script>
+            let vm = new Vue({
+                el:'#demo',
+                data: {
+                    
+                }
+            })
+            const zidingyiPush = Array.prototype.push
+            Array.prototype.push = function(data){
+                zidingyiPush.call(this,data)
+                console.log(this);
+                console.log('数组发生变化了');
+            }
+            let arr1 = [1,2,3,4]
+            arr1.push(5)
+            console.log(arr1);
+        </script>
+    </body>
+</html>

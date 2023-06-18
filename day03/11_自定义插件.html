@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+        <script src="../js/zidingyi.js"></script>
+    </head>
+    <body>
+        <div id="demo"></div>
+        <script>
+            Vue.use(MyPlugin,{isShow:true})
+            Vue.myGlobalMethod()
+            let vm = new Vue({
+                el:'#demo',
+                data: {
+                    msg:'我爱你'
+                }
+            })
+            vm.$myMethod()
+        </script>
+    </body>
+</html>

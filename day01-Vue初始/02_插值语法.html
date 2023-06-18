@@ -8,6 +8,16 @@
         <script src="../js/vue.js"></script>
     </head>
     <body>
+        <!-- 
+            // 插值语法
+            // 在html中写的双花括号就是插值语法  {{  }}
+            // {{}}在页面中代表js的分割符号
+            // 在双花括号里面写js的表达式
+            // 问: 什么是表达式
+            // 由变量、常量及运算符组成的式子叫表达式
+            // 注意: 表达式是有值的
+            // 所有配置在data中的数据可以直接写在插值语法中
+         -->
         <div id="demo">
             <div>{{msg}}</div>
             <div>{{name}}</div>
@@ -42,6 +52,64 @@
                     }
                 }
             })
+        </script>
+
+
+        <script>
+            /*
+            <div id="app">
+        <div>{{ msg }}</div>
+        <div>{{ name }}</div>
+    </div>
+
+    <script>
+        // el挂载点意思:
+        // 将我们创建的实例和页面中的DOM进行关联
+        // 页面中以后所有的内容都写在这个div中
+        // el的写法
+        //      el: '#app'
+        //      el: document.getElementById('app'),
+        //      vm.$mount('#app')
+        //      vm.$mount(document.getElementById('app'))
+
+        // data数据的意思:
+        // 以后我们页面中所有用到的数据都在data中配置
+        // data的写法:
+        //      对象写法
+        //      data: {
+        //          msg: '我爱你',
+        //          name: '高圆圆'
+        //      }
+        //      函数返回对象写法
+        //      data() {
+        //          return {
+        //              msg: '我爱你',
+        //              name: '高圆圆'
+        //          }
+        //      }
+        // 两种写法的差异会在后面说,现在按下不表
+        // 目前使用对象写法即可,到后面需要切换成函数写法再说
+
+        
+        // 注意: 以后写的js代表都在创建实例时,传入的配置对象中
+        let vm = new Vue({
+            el: '#app',
+            // el: document.getElementById('app'),
+            // data: {
+            //     msg: '我爱你',
+            //     name: '高圆圆'
+            // }
+            data() {
+                return {
+                    msg: '我爱你',
+                    name: '高圆圆'
+                }
+            }
+        })
+
+        // vm.$mount('#app')
+        // vm.$mount(document.getElementById('app'))
+            */
         </script>
     </body>
 </html>

@@ -42,17 +42,14 @@
                         this.isShow = true
                     },2000)
                 },
-                // 更新前
-                beforeUpdate(){
+                beforeUpdate(){// 更新前
                     console.log('更新前',this.isShow,this.$refs.abcRef);
                 },
-                // 更新后
                 // 更新指的是DOM的更新
-                updated(){
+                updated(){// 更新后
                     console.log('更新后',this.isShow,this.$refs.abcRef);
                 },
-                // 销毁前
-                beforeDestroy(){
+                beforeDestroy(){// 销毁前
                     console.log('销毁前',this.$refs.abcRef);
                 },
                 // 销毁后

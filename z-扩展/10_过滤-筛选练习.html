@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <script src="../js/vue.js"></script>
+    </head>
+    <body>
+        <div id="demo">
+            <input type="text" v-model="arr">
+            <div v-for="s in stars" :key="s.id">
+                {{s.name}}
+            </div>
+        </div>
+        <script>
+            new Vue({
+                el:'#demo',
+                data: {
+                    stars:[
+                        {
+                            id:1,
+                            name:'周杰伦',
+                            age:28
+                        },
+                        {
+                            id:2,
+                            name:'周冬雨',
+                            age:18
+                        },
+                        {
+                            id:3,
+                            name:'刘能',
+                            age:33
+                        },
+                        {
+                            id:4,
+                            name:'刘万能',
+                            age:22
+                        },
+                    ]
+                },
+                methods:{
+                    arr:''
+                }
+            })
+        </script>
+    </body>
+</html>

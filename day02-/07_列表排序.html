@@ -9,21 +9,29 @@
     </head>
     <body>
         <div id="demo">
-            <input type="text" v-model="keywords">
-            <button @click="sortType = 1">升序</button>
-            <button @click="sortType = 2">降序</button>
-            <button @click="sortType = 3">原序</button>
+            <input type="text" v-model="a">
+            <button @click="number1 = 1">升序</button>
+            <button @click="number1 = 2">降序</button>
+            <button @click="number1 = 3">原序</button>
 
             <div v-for="item in newList" :key="item.id">
-                {{item.id}} -- {{item.content}} -- {{item.age}}
+                {{item.content}} -- {{item.age}}
             </div>
         </div>
         <script>
+            // 需求:列表的排序
+            // 详情：设置三个按钮"按升序排列"、"按降序排列"、"按原序排列"
+            //      点击按钮的时候年龄按照点击的排
+            // 注意: 不能把过滤的功能丢失
+
+            // 1. 获取到按什么类型排序
+            // 2. 在过滤的计算属性中,拿到过滤之后的数组进行排序
+
             new Vue({
                 el:'#demo',
                 data: {
-                    keywords:'',
-                    sortType:3,
+                    number1:3,
+                    a:'',
                     list: [
                         { id: 1010, content: 'gaoyuanyuan', age: 28 },
                         { id: 1020, content: 'yangmi', age: 22 },
@@ -31,19 +39,16 @@
                         { id: 1040, content: 'yuqian', age: 18 },
                     ],
                 },
+                methods:{},
                 computed:{
                     newList(){
                         let arr = this.list.filter(item=>{
-                            return item.content.includes(this.keywords)
+                            return item.content.includes(this.a)
                         })
-                        if(this.sortType === 1){
-                            arr.sort((a,b)=>{
-                                return a.age - b.age
-                            })
-                        }else if(this.sortType === 2){
-                            arr.sort((a,b)=>{
-                                return b.age - a.age
-                            })
+                        if(this.number1 === 1){
+                            arr.sort((a,b)=>{return a.age-b.age})
+                        }else if(this.number1 === 2){
+                            arr.sort((a,b)=>{return b.age-a.age})
                         }else{}
                         return arr
                     }
