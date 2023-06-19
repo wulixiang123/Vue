@@ -12,35 +12,10 @@
             <mycomp></mycomp>
         </div>
         <script>
-            let VueComponent = Vue.extend({
-                // data:{//注意data不能写成对象
-                //     count:1
-                // },
-                data(){
-                    return {
-                        count:1
-                    }
-                },
-                methods:{
-                    click1(){
-                        this.count++
-                    }
-                },
-                template:`
-                <div>
-                    <div style='color:red' @click='click1'>我是template,我必须有一个根标签包裹</div>
-                    <div>我是{{count}}</div>
-                </div>`
-            })
-            Vue.component('mycomp',VueComponent)
-
-
-            new Vue({
-                el:'#demo',
-                data: {}
-            })
-            
-            // Vue.component('mycomp',{
+            // let VueComponent = Vue.extend({
+            //     // data:{//注意data不能写成对象
+            //     //     count:1
+            //     // },
             //     data(){
             //         return {
             //             count:1
@@ -51,13 +26,39 @@
             //             this.count++
             //         }
             //     },
-            //     template: `
-            //         <div>
-            //             <div style='color: red;' @click='clickHandler'>我爱你高圆圆</div>
-            //             <div>爱了 {{ count }} 次</div>    
-            //         </div>
-            //     `
+            //     template:`
+            //     <div>
+            //         <div style='color:red' @click='click1'>我是template,我必须有一个根标签包裹</div>
+            //         <div>我是{{count}}</div>
+            //     </div>`
             // })
+            // Vue.component('mycomp',VueComponent)
+
+
+            
+            Vue.component('mycomp',{
+                data(){
+                    return {
+                        count:1
+                    }
+                },
+                methods:{
+                    click1(){
+                        this.count++
+                    }
+                },
+                template: `
+                    <div>
+                        <div style='color: red;' @click='clickHandler'>我爱你高圆圆</div>
+                        <div>爱了 {{ count }} 次</div>    
+                    </div>
+                `
+            })
+
+            new Vue({
+                el:'#demo',
+                data: {}
+            })
         </script>
     </body>
 </html>

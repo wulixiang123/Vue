@@ -8,7 +8,34 @@
         <script src="../js/vue.js"></script>
     </head>
     <body>
+
+        <!-- 
+            // 组件
+            // 是什么?
+            // 是一个html、css、js组成的代码块
+            // 为什么要有组件?组件的作用: 复用
+            // 咋用?
+            // 组件分为非单文件组件和单文件组件
+            // 非单文件组件 - 一个文件不是一个组件(先说这个)
+            // 单文件组件 - 一个文件就是一个组件
+
+            // 组件使用步骤:
+            // 1. 定义组件
+            // 2. 注册组件
+            // 3. 使用组件
+
+            // 1. 定义组件 - 写成一个count值自增的组件
+            // 注意:
+            //      1. 组件定义使用 Vue.extend() 传入一个配置项,这个配置项和new Vue时候的配置项一模一样
+            //          除了el配置项
+            //          Vue.extend() 返回一个组件的配置项
+            //      2. data必须使用函数返回值的形式,如果使用对象形式,多个组件会公用一套数据
+            //      3. template必须有根标签,没有会报错(规定)
+         -->
+
         <div id="demo">
+            <!-- 使用组件 - 在页面中使用组件的时候代表new了一个组件的构造函数,
+                创建一个组件实例,只不过new这个过程我们看不到 -->
             <mybutton></mybutton>
         </div>
         <script>
@@ -16,7 +43,10 @@
                 el:'#demo',
                 data: {},
                 components:{
-                    mybutton:{
+                    mybutton:{// 属性名是组件名: 属性值组件的配置对象
+                        // data:{//注意data不能写成对象
+                        //     count:1
+                        // },
                         data(){
                             return {
                                 count:1
@@ -27,8 +57,8 @@
                                 this.count++
                             }
                         },
-                        template:`
-                        <div>
+                        template:// template必须有根标签,没有会报错(规定)
+                        `<div>
                             <div style='color: blue' @click='click1'>我是template</div>
                             <div>我是{{count}}</div>
                         </div>`
