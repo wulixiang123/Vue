@@ -1,8 +1,8 @@
 <template>
             <li>
             <label>
-              <input type="checkbox" />
-              <span>xxxxx</span>
+              <input type="checkbox" v-model="todo.isDone"/>
+              <span>{{todo.title}}</span>
             </label>
             <button class="btn btn-danger" style="display:none">删除</button>
           </li>
@@ -10,7 +10,8 @@
 
 <script>
 export default {
-name:'Item'
+name:'Item',
+props:['todo']
 }
 </script>
 
@@ -49,4 +50,5 @@ li:before {
 li:last-child {
   border-bottom: none;
 }
+
 </style>

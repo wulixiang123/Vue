@@ -1,12 +1,21 @@
 <template>
         <div class="todo-header">
-          <input type="text" placeholder="请输入你的任务名称，按回车键确认" />
+          <input type="text" @keyup.enter="addTodo" placeholder="请输入你的任务名称，按回车键确认" />
         </div>
 </template>
 
 <script>
 export default {
-    name:'Header'
+    name:'Header',
+    props:['add'],
+    methods:{
+      addTodo(e){
+        let title = e.target.value.trim()
+        if(!title)return
+        this.add(title)
+        e.target.value=''
+      }
+    }
 }
 </script>
 

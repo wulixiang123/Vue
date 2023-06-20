@@ -1,9 +1,9 @@
 <template>
   <div class="todo-container">
     <div class="todo-wrap">
-      <Header></Header>
-      <Main></Main>
-      <Footer></Footer>
+      <Header :add="add"></Header>
+      <Main :todos="todos"></Main>
+      <Footer :todos="todos"></Footer>
     </div>
   </div>
 </template>
@@ -12,12 +12,39 @@
 import Header from'@/components/Header'
 import Main from '@/components/Main'
 import Footer from'@/components/Footer'
+import { nanoid } from 'nanoid'
 export default {
 name:'App',
-components:{
-  Header,
-  Main,
-  Footer
+components:{Header,Main,Footer},
+data(){
+  return {
+    todos:[
+      {
+        id:nanoid(),
+        title:'吃饭',
+        isDone:true
+      },
+      {
+        id:nanoid(),
+        title:'睡觉',
+        isDone:true
+      },
+      {
+        id:nanoid(),
+        title:'敲代码',
+        isDone:false
+      },
+    ]
+  }
+},
+methods:{
+  add(title){
+    this.todos.unshift({
+      id:nanoid(),
+      title,
+      isDone:false
+    })
+  }
 }
 }
 </script>
