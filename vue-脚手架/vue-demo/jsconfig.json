@@ -6,7 +6,7 @@
     "moduleResolution": "node",
     "paths": {
       "@/*": [
-        "src/*"
+        "11_$on与$emit在哪/*"
       ]
     },
     "lib": [
