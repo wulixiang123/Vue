@@ -7,17 +7,19 @@
 </template>
 
 <script>
+import Pubsub from 'pubsub-js'
 export default {
     name:"Child",
     data(){
-        return{
-            msg:"我爱你"
+        return {
+            msg:'我爱你'
         }
     },
     methods:{
         click1(){
             // this.$bus  ->  vm实例
-            this.$bus.$emit('qwer',this.msg)
+            // this.$bus.$emit('qwer', this.msg)
+            Pubsub.publish('qwer',this.msg)
         }
     }
 }
