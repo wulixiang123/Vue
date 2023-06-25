@@ -1,6 +1,7 @@
 <template>
   <div class="wrapper">
     <h4>Detail组件 - 命名空间</h4>
+    <!-- $store.state.模块名.count -->
     <div>count: {{ $store.state.detail.count }}</div>
     <div>count: {{ $store.getters['detail/tenflod'] }}</div>
     <button @click="addHandler">自增</button>
