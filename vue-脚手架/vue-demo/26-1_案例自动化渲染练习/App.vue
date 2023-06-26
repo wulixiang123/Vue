@@ -10,13 +10,9 @@
 
 <script>
 import UserInfo from "@/components/UserInfo";
-
-import UWechat from '@/components/UserInfo/support/UWechat'
-import UQQ from '@/components/UserInfo/support/UQQ';
-import USina from '@/components/UserInfo/support/USina';
 export default {
   name: "App",
-  components: { UserInfo,UWechat,UQQ,USina },
+  components: { UserInfo },
   data() {
     return {
       userlist: [
