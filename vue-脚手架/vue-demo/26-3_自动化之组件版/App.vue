@@ -1,51 +1,5 @@
 <template>
   <div class="container">
-    <!-- 第一版: 实现功能 -->
-    <!-- <UserInfo
-      v-for="user in userlist"
-      :key="user.id"
-      :user="user"
-    ></UserInfo> -->
-
-    <!-- 第二版: 要求,以后关联新的平台不再修改 UserInfo 组件 -->
-    <!-- <UserInfo
-      v-for="user in userlist"
-      :key="user.id"
-      :user="user"
-      #default="{ row }"
-    >
-      <div v-if="row.wechat">
-        <div>
-          <span>关联平台</span>
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-weixin"></use>
-          </svg>
-        </div>
-        <div>账号:{{ row.wechat }}</div>
-      </div>
-
-      <div v-if="row.qq">
-        <div>
-          <span>关联平台</span>
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-QQ"></use>
-          </svg>
-        </div>
-        <div>账号:{{ row.qq }}</div>
-      </div>
-
-      <div v-if="row.sina">
-        <div>
-          <span>关联平台</span>
-          <svg class="icon" aria-hidden="true">
-            <use xlink:href="#icon-xinlang"></use>
-          </svg>
-        </div>
-        <div>账号:{{ row.sina }}</div>
-        <div>邮箱:{{ row.email }}</div>
-      </div>
-    </UserInfo> -->
-
     <!--
       第三版: 目前我们在组件标签之间把模板通过slot传给子组件
              问题来了: 如果传的模板过长怎么办?

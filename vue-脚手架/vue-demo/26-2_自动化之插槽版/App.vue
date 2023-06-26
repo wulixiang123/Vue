@@ -1,14 +1,6 @@
 <template>
   <div class="container">
-    <!-- 第一版: 实现功能 -->
-    <!-- <UserInfo
-      v-for="user in userlist"
-      :key="user.id"
-      :user="user"
-    ></UserInfo> -->
-
-    <!-- 第二版: 要求,以后关联新的平台不再修改 UserInfo 组件 -->
-    <!-- <UserInfo
+    <UserInfo
       v-for="user in userlist"
       :key="user.id"
       :user="user"
@@ -44,36 +36,15 @@
         <div>账号:{{ row.sina }}</div>
         <div>邮箱:{{ row.email }}</div>
       </div>
-    </UserInfo> -->
-
-    <!--
-      第三版: 目前我们在组件标签之间把模板通过slot传给子组件
-             问题来了: 如果传的模板过长怎么办?
-             封装成组件
-      这个版本是必须掌握的
-    -->
-    <UserInfo
-    v-for="user in userlist"
-    :key="user.id"
-    :user="user"
-    #default="{row}"
-    >
-    <UWechat v-if="row.wechat" :row="row"></UWechat>
-    <UQQ v-if="row.qq" :row="row"></UQQ>
-    <USina v-if="row.sina" :row="row"></USina>
     </UserInfo>
   </div>
 </template>
 
 <script>
 import UserInfo from "@/components/UserInfo";
-
-import UWechat from '@/components/UserInfo/support/UWechat'
-import UQQ from '@/components/UserInfo/support/UQQ';
-import USina from '@/components/UserInfo/support/USina';
 export default {
   name: "App",
-  components: { UserInfo,UWechat,UQQ,USina },
+  components: { UserInfo },
   data() {
     return {
       userlist: [
