@@ -1,43 +1,44 @@
-<template>
-  <div>
-    <div class="container">
-        <div class="page-header">
-            <h1>路由组件的练习</h1>
-        </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <!-- Nav tabs -->
-            <ul class="nav nav-stacked col-md-6" role="tablist">
-                <li role="presentation" class="active">
-                  <!-- <router-link to="/url"> 跳转至/home-->
-                  <router-link to="/home" aria-controls="home" role="tab" data-toggle="tab">Home</router-link>
-
-                </li>
-                <li role="presentation">
-                  <router-link to="/about" aria-controls="About" role="tab" data-toggle="tab">About</router-link>
-                </li>
-            </ul>
-            <!-- Tab panes -->
-            <div class="tab-content col-md-6">
-              <!-- <router-view> 展示的位置 -->
-              <router-view></router-view>
-          </div>
-        </div>
-      </div>
-  </div>
-</template>
+<template></template>
 
 <script>
 export default {
-  name:'App',
-  
-  // mounted(){
-  //   console.log(this.$router);
-  // }
-}
+name:'App',
+mounted(){
+    function deepClone(obj) {
+        if(obj.typeof !=='object' || obj === null){
+            return obj
+        }
+        let res = obj instanceof Array ? []:{}
+        for(let key in obj){
+            if(obj.hasOwnProperty(key)){
+                res[key] = deepClone(obj[key])
+            }
+        }
+        return res
+    }
+
+let a = [1, 2, 3, 4, 5]
+
+console.log(deepClone(a))
+a.push(11)
+console.log(a);
+console.log(deepClone(a));
+
+
+
+
+
+
+
+    // console.log(console);
+    console.dir(Object);
+    console.dir(Function);
+    // console.dir(Boolean);
+    // console.dir(Number);
+    // console.dir(String);
+    // console.dir(Symbol);
+}}
 </script>
 
-<style scoped>
-  
+<style>
 </style>
