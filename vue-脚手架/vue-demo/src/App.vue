@@ -13,6 +13,7 @@
         <my-ref></my-ref>
         <my-show></my-show>
         <my-slot></my-slot>
+        <my-jsx></my-jsx>
     </div>
 </template>
 
@@ -25,13 +26,14 @@ import MyFilter from './components/myFilter.vue'
 import MyFor from './components/myFor.vue'
 // import myHtml from '@/components/myHtml.vue'
 import myHtml from './components/myHtml.vue'
+import MyJsx from './components/myJsx.vue'
 import MyModel from './components/myModel.vue'
 import MyParent from './components/myParent.vue'
 import MyRef from './components/myRef.vue'
 import MyShow from './components/myShow.vue'
 import MySlot from './components/mySlot.vue'
 export default {
-  components: { myHtml, MyClass, MyEvent, MyFor, MyModel, MyChild, MyDirective, MyFilter, MyParent, MyRef, MyShow, MySlot,  },
+  components: { myHtml, MyClass, MyEvent, MyFor, MyModel, MyChild, MyDirective, MyFilter, MyParent, MyRef, MyShow, MySlot, MyJsx,  },
   name:'App',
 }
 </script>
